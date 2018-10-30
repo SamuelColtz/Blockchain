@@ -10,15 +10,17 @@ using namespace std;
 
 int main()
 {
+  Blockchain Aeonflux; // declaration Chain
   time_t timer;
   TransactionData data(200, "asdfas", "dfasdfs", time(&timer));
-  Blockchain Aeonflux;
   Aeonflux.addBlock(data);
-  bool result = Aeonflux.isChainValid();
+
   TransactionData data1(500, "asdfas", "dfasdfs", time(&timer));
   Aeonflux.addBlock(data1);
   TransactionData data2(300, "asdfas", "dfasdfs", time(&timer));
   Aeonflux.addBlock(data2);
+  Block *hack = Aeonflux.getLastBlock();
+  hack->data.amount = 2000;
   cout <<Aeonflux.isChainValid()<<endl;
   return 0;
 }

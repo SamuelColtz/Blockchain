@@ -19,6 +19,7 @@ class Block
     size_t getIndex();
     size_t getHash();
     size_t getPrevHash();
+    bool isHashValid();
 };
 
 #endif //BLOCK_H

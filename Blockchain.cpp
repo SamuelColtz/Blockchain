@@ -40,19 +40,14 @@ void Blockchain::addBlock(TransactionData d)
 
 bool Blockchain::isChainValid()
 {
-  std::cout <<sizeof(getChain())<<std::endl;
   std::vector<Block>::iterator i;
   for (i = getChain().begin(); i != getChain().end();  ++i)
   {
     Block currentBlock = *i;
-    if (i != getChain().begin())
+    if (!currentBlock.isHashValid())
     {
-      Block previousBlock = *(i-1);
-      if (currentBlock.getPrevHash() != previousBlock.getHash())
-      {
-        std::cout<< currentBlock.getPrevHash() <<std::endl;
-        return false;
-      }
+      return false;
+      //We can return hacked block in here
     }
   }
   return true;

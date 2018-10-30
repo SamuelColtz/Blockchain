@@ -34,3 +34,7 @@ size_t Block::getPrevHash()
   return previousHash;
 };
 
+bool Block::isHashValid()
+{
+  return getHash() == generateHash();
+}
