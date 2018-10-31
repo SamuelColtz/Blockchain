@@ -11,16 +11,22 @@ using namespace std;
 int main()
 {
   Blockchain Aeonflux; // declaration Chain
-  time_t timer;
-  TransactionData data(200, "asdfas", "dfasdfs", time(&timer));
+  time_t timer; // set currrent time
+
+  // some transactions
+  TransactionData data(200, "Rick", "Morty", time(&timer));
   Aeonflux.addBlock(data);
 
-  TransactionData data1(500, "asdfas", "dfasdfs", time(&timer));
-  Aeonflux.addBlock(data1);
-  TransactionData data2(300, "asdfas", "dfasdfs", time(&timer));
-  Aeonflux.addBlock(data2);
+  data = TransactionData(500, "Freddie", "Bowie", time(&timer));
+  Aeonflux.addBlock(data);
+
+  data = TransactionData(300, "Jhon", "Hunter", time(&timer));
+  Aeonflux.addBlock(data);
+
+  // someone's getting hack
   Block *hack = Aeonflux.getLastBlock();
   hack->data.amount = 2000;
-  cout <<Aeonflux.isChainValid()<<endl;
+  Aeonflux.isChainValid();
+
   return 0;
 }

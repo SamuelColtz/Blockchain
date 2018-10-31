@@ -43,12 +43,25 @@ bool Blockchain::isChainValid()
   std::vector<Block>::iterator i;
   for (i = getChain().begin(); i != getChain().end();  ++i)
   {
+
     Block currentBlock = *i;
     if (!currentBlock.isHashValid())
     {
       return false;
       //We can return hacked block in here
     }
+    if (i != getChain().begin())
+    {
+      Block previousBlock = *(i-1);
+      if(previousBlock.getHash() != currentBlock.getPrevHash())
+      {
+        std::cout<<"chain"<<std::endl;
+        return false;
+      }
+    }
   }
   return true;
 };
+
+
+
